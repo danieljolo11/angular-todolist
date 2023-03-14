@@ -11,7 +11,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-pug-builders:browser",
           "options": {
             "outputPath": "dist/angular-todolist",
             "index": "src/index.html",
@@ -57,7 +57,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-pug-builders:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "angular-todolist:build:production"
@@ -69,13 +69,13 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-pug-builders:extract-i18n",
           "options": {
             "browserTarget": "angular-todolist:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "ngx-pug-builders:karma",
           "options": {
             "polyfills": [
               "zone.js",
@@ -94,5 +94,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "6333e232-0cb7-480b-a01a-864d9d88d867"
   }
 }

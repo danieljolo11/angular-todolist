@@ -1,0 +1,13 @@
+div.min-h-screen
+  div.flex.justify-center.items-center.flex-col.py-6.gap-3
+    span Add Username here
+    input(*ngIf="!this.isButtonVisible")([(ngModel)]="user.username" type='text' name="username" placeholder="Create" required).border.border-zinc-600.rounded-md.focus_outline-none.focus_ring-2.focus_ring-zinc-400.px-2.py-1
+    input(*ngIf="this.isButtonVisible")([(ngModel)]="edituser.username" type='text' name="Data.username" placeholder="Edit").border.border-zinc-600.rounded-md.focus_outline-none.focus_ring-2.focus_ring-zinc-400.px-2.py-1
+    button(*ngIf="!this.isButtonVisible")((click)="adduser($event)").border.border-zinc-600.rounded-lg.px-4.py-1.active_scale-95 Add
+    button(*ngIf="this.isButtonVisible")((click)="updateuser($event)").border.border-zinc-600.rounded-lg.px-4.py-1.active_scale-95 Edit
+  div.flex.justify-center.items-center
+    div.flex.flex-col.bg-blue-500.px-4.py-4.rounded-lg.max-w-xs.w-full
+      ul(*ngFor="let item of Data index as i").flex.flex-row.justify-between.items-center
+        li {{item.username}}
+        li((click)="onEdit(item.username, i)").cursor-pointer Edit
+        li((click)="onRemove(i)").cursor-pointer Remove
