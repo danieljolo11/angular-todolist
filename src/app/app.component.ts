@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 interface Form {
   username: string;
+  age: number;
+  gender: string;
   index?: number;
 }
 @Component({
@@ -17,28 +19,45 @@ export class AppComponent {
 
   public user: Form = {
     username: '',
+    age: 0,
+    gender: '',
   };
 
   public edituser: Form = {
     username: '',
+    age: 0,
+    gender: '',
     index: 0,
   };
 
-  public adduser = (value: any) => {
-    this.Data.push(this.user);
-    this.user = { username: '' };
+  public onSubmit = (value: any) => {
+    if (this.isButtonVisible) {
+      return this.updateuser(value);
+    } else {
+      return this.adduser(value);
+    }
   };
 
-  public updateuser = (value: any) => {
-    const { index, username }: Form | any = this.edituser || {};
+  private updateuser = (value: any) => {
+    const { index, username, age, gender }: Form | any = this.edituser || {};
 
     this.Data[index].username = username;
+    this.Data[index].age = age;
+    this.Data[index].gender = gender;
     this.isButtonVisible = false;
-    return (this.edituser = { username: '' });
+    return (this.edituser = { username: '', age: 0, gender: '' });
   };
 
-  public onEdit = (data: string, index: number) => {
-    this.edituser = { username: data, index: index };
+  private adduser = (value: any) => {
+    this.Data.push(this.user);
+    this.user = { username: '', age: 0, gender: '' };
+  };
+
+  public onEdit = (data: any, index: number) => {
+    this.edituser = {
+      ...data,
+      index: index,
+    };
     this.isButtonVisible = true;
   };
 

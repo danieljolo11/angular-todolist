@@ -1,13 +1,32 @@
-div.min-h-screen
-  div.flex.justify-center.items-center.flex-col.py-6.gap-3
-    span Add Username here
-    input(*ngIf="!this.isButtonVisible")([(ngModel)]="user.username" type='text' name="username" placeholder="Create" required).border.border-zinc-600.rounded-md.focus_outline-none.focus_ring-2.focus_ring-zinc-400.px-2.py-1
-    input(*ngIf="this.isButtonVisible")([(ngModel)]="edituser.username" type='text' name="Data.username" placeholder="Edit").border.border-zinc-600.rounded-md.focus_outline-none.focus_ring-2.focus_ring-zinc-400.px-2.py-1
-    button(*ngIf="!this.isButtonVisible")((click)="adduser($event)").border.border-zinc-600.rounded-lg.px-4.py-1.active_scale-95 Add
-    button(*ngIf="this.isButtonVisible")((click)="updateuser($event)").border.border-zinc-600.rounded-lg.px-4.py-1.active_scale-95 Edit
-  div.flex.justify-center.items-center
-    div.flex.flex-col.bg-blue-500.px-4.py-4.rounded-lg.max-w-xs.w-full
-      ul(*ngFor="let item of Data index as i").flex.flex-row.justify-between.items-center
-        li {{item.username}}
-        li((click)="onEdit(item.username, i)").cursor-pointer Edit
-        li((click)="onRemove(i)").cursor-pointer Remove
+div.flex.flex-row.min-h-screen
+  div.flex.flex-col.h-screen.bg-limegreen.w-full.max-w-xs
+    form((ngSubmit)="onSubmit($event)").flex.flex-col.justify-center.py-10.px-6.gap-3
+      span.text-center.text-zinc-700.uppercase.text-sm Add Details here
+      input(*ngIf="!this.isButtonVisible")([(ngModel)]="user.username" type='text' name="username" placeholder="Name" required).border.border-lime-900.rounded-md.focus_outline-none.focus_ring-1.focus_ring-lime-600.px-2.py-1
+      input(*ngIf="this.isButtonVisible")([(ngModel)]="edituser.username" type='text' name="editusername").border.border-lime-900.rounded-md.focus_outline-none.focus_ring-1.focus_ring-lime-600.px-2.py-1
+      input(*ngIf="!this.isButtonVisible")([(ngModel)]="user.age" type='text' name="age" placeholder="Age" required).border.border-lime-900.rounded-md.focus_outline-none.focus_ring-1.focus_ring-lime-600.px-2.py-1
+      input(*ngIf="this.isButtonVisible")([(ngModel)]="edituser.age" type='text' name="editage").border.border-lime-900.rounded-md.focus_outline-none.focus_ring-1.focus_ring-lime-600.px-2.py-1
+      select(*ngIf="!this.isButtonVisible")([(ngModel)]="user.gender" name="gender").border.border-lime-900.rounded-md.focus_outline-none.focus_ring-1.focus_ring-lime-600.px-2.py-1
+        option(value="male") Male
+        option(value="female") Female
+      select(*ngIf="this.isButtonVisible")([(ngModel)]="edituser.gender" name="editgender").border.border-lime-900.rounded-md.focus_outline-none.focus_ring-1.focus_ring-lime-600.px-2.py-1
+        option(value="male") Male
+        option(value="female") Female
+      button.border.border-lime-900.rounded-lg.px-4.py-1.active_scale-95.hover_bg-lightlime.hover_border-transparent {{isButtonVisible ? 'Edit' : 'Add'}}
+  div.w-full.mx-6.my-10
+    table.table-fixed.w-full
+      thead
+        tr.text-center.border.border-zinc-800.text-zinc-700.font-medium.text-base
+          th.border-l.border-zinc-800 Name
+          th.border-x.border-zinc-800 Age
+          th.border-x.border-zinc-800 Gender
+          th.border-r.border-zinc-800 Action
+      tbody
+        tr(*ngFor="let item of Data index as i").text-center.text-sm.font-normal
+          td.border-l.border-b.border-zinc-800 {{item.username}}
+          td.border-x.border-b.border-zinc-800 {{item.age}}  
+          td.border-x.border-b.border-zinc-800 {{item.gender}} 
+          td.border-r.border-b.border-zinc-800
+            div.flex.flex-row.items-center.gap-4.justify-center
+              span((click)="onEdit(item, i)").cursor-pointer Update
+              span((click)="onRemove(i)").cursor-pointer Remove
