@@ -23,9 +23,9 @@ div.flex.flex-row.min-h-screen
           th.border-r.border-zinc-800 Action
       tbody
         tr(*ngFor="let item of Data index as i").text-center.text-sm.font-normal
-          td.border-l.border-b.border-zinc-800 {{item.username}}
+          td.border-l.border-b.border-zinc-800.capitalize {{item.username}}
           td.border-x.border-b.border-zinc-800 {{item.age}}  
-          td.border-x.border-b.border-zinc-800 {{item.gender}} 
+          td.border-x.border-b.border-zinc-800.capitalize {{item.gender}} 
           td.border-r.border-b.border-zinc-800
             div.flex.flex-row.items-center.gap-4.justify-center
               span((click)="onEdit(item, i)").cursor-pointer Update
