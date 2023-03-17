@@ -5,8 +5,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "limegreen": "#CCD5AE",
-        "lightlime": "#E9EDC9",
+        limegreen: "#CCD5AE",
+        lightlime: "#E9EDC9",
+        loginbg: "#94AF9F",
       },
     },
   },
