@@ -8,7 +8,7 @@ interface Form {
 }
 @Component({
   selector: 'app-root',
-  templateUrl: './login/login.component.pug',
+  templateUrl: './app.component.pug',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
